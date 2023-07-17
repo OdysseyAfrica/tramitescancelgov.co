@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import SearchIcon from '@mui/icons-material/Search';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
-export default function page(){
+export default function Page(){
   const [passport, setPassport] = useState('')
   const [verification, setVerification] = useState('')
   const [error, setError] = useState('')
