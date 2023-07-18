@@ -1,12 +1,19 @@
 "use client"
 
 import React, { useState } from 'react';
+import ReCAPTCHA from "react-google-recaptcha";
+import Image from 'next/image';
 
-import { Button } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 
 import SearchIcon from '@mui/icons-material/Search';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+
+import net from '../../public/internet.png';
+import chrome from '../../public/chrome.png';
+import mozilla from '../../public/mozilla.png';
+
+const key = "6LfAdDQnAAAAAOIEbj7JY21dyGqw_gfDvZBXLlq9";
 
 export default function Page(){
   const [passport, setPassport] = useState('')
@@ -28,19 +35,25 @@ export default function Page(){
     }
   }
 
+  const [verified, setVerified] = useState(false);
+
+  function onChange(value) {
+    setVerified(true)
+  }
+
   return (
     <div className='p-2'>
       {/* Top */}
-      <div className='text-center font-black text-m pt-3 pb-6 font-Lato'>
+      <div className='text-right font-black text-m pt-3 pb-6 font-Lato pr-10'>
         SITAC
       </div>
 
       {/* Body */}
       <div className='flex flex-col justify-center align-middle items-center'>
         {/* Heading */}
-        <div className='flex flex-col justify-center align-middle items-center pb-5'>
+        <div className='flex flex-col justify-center pb-5 w-full'>
           {/* Title */}
-          <div className='text-center text-s font-Lato pb-3'>
+          <div className='text-left text-s font-Lato pb-3'>
             Consultar Documento Trámite
           </div>
 
@@ -50,11 +63,11 @@ export default function Page(){
           </div>
 
           {/* Line */}
-          <div className='h-0.5 bg-gray w-11/12'/>
+          <div className='h-0.5 bg-gray w-full'/>
         </div>
 
         {/* Body */}
-        <div>
+        <div className='flex flex-col justify-center pb-5 w-full'>
           {/* Title */}
           <div className='text-sm font-Lato pb-5'>
             Datos de Identificación
@@ -63,11 +76,11 @@ export default function Page(){
           {/* Cautions */}
           <div className='flex flex-col'>
             {/* Top */}
-            <div className='flex flex-row justify-center align-top px-5 py-3 bg-lightgray mx-2 my-1 rounded-md'>
+            <div className='flex flex-row align-top py-3 bg-lightgray my-1 rounded-md'>
               {/* Icon */}
               <div>
                 <ErrorOutlineIcon
-                  className='text-buttonhover text-ml pr-2'
+                  className='text-buttonhover text-mxl mr-5'
                 />
               </div>
 
@@ -78,11 +91,11 @@ export default function Page(){
             </div>
 
             {/* Bottom */}
-            <div className='flex flex-row justify-center align-top px-5 py-3 bg-lightgray mx-2 my-1 rounded-md'>
+            <div className='flex flex-row align-top py-2 bg-lightgray my-0.5 rounded-md'>
               {/* Icon */}
               <div>
                 <ErrorOutlineIcon
-                  className='text-buttonhover text-ml pr-2'
+                  className='text-buttonhover text-mxl mr-5'
                 />
               </div>
 
@@ -97,7 +110,7 @@ export default function Page(){
         {/* Form */}
         <form 
           onSubmit={handleButtonClick}
-          className='flex flex-col'
+          className='flex flex-col justify-start w-full'
         >
           <label 
             htmlFor="number"
@@ -108,7 +121,7 @@ export default function Page(){
 
           <input 
             id='number'
-            className='mb-4'
+            className='mb-4 text-sm py-1 border border-1 rounded-md border-buttonhover active:border-buttonhover after:border-buttonhover'
             value={passport}
             onChange= {(e) => setPassport(e.target.value)}
           />
@@ -129,7 +142,7 @@ export default function Page(){
 
           <input 
             id='verification'
-            className='mb-4'
+            className='mb-4 text-sm py-1 border border-1 rounded-md border-buttonhover'
             value={verification}
             onChange= {(e) => setVerification(e.target.value)}
           />
@@ -141,6 +154,14 @@ export default function Page(){
               </p>
             )
           }
+
+          {/* Recapture */}
+          <div className='flex justify-center p-3'>
+            <ReCAPTCHA
+              sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+              onChange={onChange}
+            />
+          </div>
 
           <button
             type='submit'
@@ -159,8 +180,19 @@ export default function Page(){
       </div>
 
       {/* Bottom */}
-      <div className='bottom-0 font-Lato text-ms text-center text-dark'>
-        This application works best in Internet Explorer 8 (or higher), Mozilla Firefox or Google Chrome <br />
+      <div className='inline bottom-0 font-Lato text-ms text-center text-dark'>
+        This application works best in Internet Explorer 8<Image 
+          src={net}
+          className='inline'
+        />
+         (or higher), Mozilla Firefox<Image 
+          src={mozilla}
+          className='inline'
+         />
+          or Google Chrome<Image
+            src={chrome}
+            className='inline'
+          />
         @Versión 6.2.5
       </div>
     </div>
