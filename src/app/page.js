@@ -158,7 +158,7 @@ export default function Page(){
           {/* Recapture */}
           <div className='flex justify-center p-3'>
             <ReCAPTCHA
-              sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
+              sitekey="6LcgwTQnAAAAAHUde5nexGawoz03Ya7jXFThy6br"
               onChange={onChange}
             />
           </div>
