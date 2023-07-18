@@ -14,7 +14,7 @@ const page = () => {
         <div className='flex flex-col justify-center align-middle items-center'>
             {/* Title */}
             <div className='text-sm font-Lato pb-5 pt-5'>
-                Visa Verified
+                Visa verificada
             </div>
         </div>
 
