@@ -23,6 +23,8 @@ export default function Page(){
       console.log('empty')
       setError("*Required")
       setButtonColor('#ff3333')
+    } else {
+      router.push('/verify')
     }
   }
 
